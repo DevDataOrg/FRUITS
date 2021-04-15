@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FuritCardView: View {
     // MARK: - PROPERTIES
+    
+    var fruit: Fruit
+    
     @State private var isAnimating: Bool = false
     
     
@@ -17,19 +20,19 @@ struct FuritCardView: View {
         ZStack {
             VStack(spacing: 20) {
                 // FRUIT: IMAGE
-                Image("blueberry")
+                Image(fruit.image)
                     .resizable()
                     .scaledToFit()
                     .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 8, x: 6, y: 8)
                     .scaleEffect(isAnimating ? 1.0 : 0.6) //Animation to start
                 // FRUIT: TITLE
-                Text("Blueberry")
+                Text(fruit.title)
                     .foregroundColor(Color.white)
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
                 // FRUIT: HEADLINE
-                Text("Blueberry are sweet, nutritius and wildly popular fruit all over the worls")
+                Text(fruit.headline)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
@@ -44,7 +47,9 @@ struct FuritCardView: View {
             }
         }
         .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        .background(LinearGradient(gradient: Gradient(colors: [Color("ColorBlueberryLight"), Color("ColorBlueberryDark")]), startPoint: .top, endPoint: .bottom))
+        .background(LinearGradient(gradient: Gradient(colors: fruit.gradientColors), startPoint: .top, endPoint: .bottom))
+        //remove after Gradien(colors:  ----- [Color("ColorBlueberryLight"), Color("ColorBlueberryDark")]), startPoint: .top, endPoint: .bottom))
+                                                        
         .cornerRadius(20)
         .padding(.horizontal, 20)
         //.padding(.top, 20)
@@ -56,7 +61,7 @@ struct FuritCardView: View {
 
 struct FuritCardView_Previews: PreviewProvider {
     static var previews: some View {
-        FuritCardView()
+        FuritCardView(fruit: fruitsData[1]) //addpreview vards data after add var fruit
             .previewLayout(.fixed(width: 320, height: 640))
     }
 }
