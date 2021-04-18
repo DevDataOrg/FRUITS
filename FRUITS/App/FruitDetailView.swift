@@ -52,8 +52,9 @@ struct FruitDetailView: View {
                 }
                 .navigationBarTitle(fruit.title, displayMode: .inline)
                 .navigationBarHidden(true)
-            }
+            }//: Navigation
             .edgesIgnoringSafeArea(.top)
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

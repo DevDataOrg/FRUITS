@@ -11,6 +11,7 @@ struct SettingsView: View {
     
     // MARK:  - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
+    @AppStorage("isOnboarding") var isOnboarding = false
     
     // MARK: - BODY
     var body: some View {
@@ -35,6 +36,34 @@ struct SettingsView: View {
                     }
                     
                     //MARK: SECTION 2
+                    GroupBox(label: SettingsLabelView(labelText: "Customiztion", labelImage: "paintbrush")){
+                        
+                        Divider().padding(.vertical, 4)
+                        Text("If you wish, you can restart the application by toggle the switch in this box. That way it restart the onboarding process and you will see the welcome screen again")
+                            .padding(.vertical, 8)
+                            .frame(minHeight: 60)
+                            .layoutPriority(1)
+                            .font(.footnote)
+                            .multilineTextAlignment(.leading)
+                        
+                        
+                            //change isOnboarding var mode true or false
+                        Toggle(isOn: $isOnboarding) {
+                            if isOnboarding {
+                                Text("Resatrted".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.green)
+                            } else {
+                                Text("Resatrt".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.secondary)
+                            }
+                        }
+                        .padding()
+                        .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous)))
+
+                        
+                    }
                     
                     
                     //MARK: SECTION 3

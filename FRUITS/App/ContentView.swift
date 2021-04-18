@@ -33,7 +33,8 @@ struct ContentView: View {
                                         SettingsView()
                                     })
             )
-        } //: NavigationView  
+        } //: NavigationView
+        .navigationViewStyle(StackNavigationViewStyle()) //add a stack stile in cell 
     }
 }
 
